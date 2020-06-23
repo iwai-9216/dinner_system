@@ -13,33 +13,33 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllUsers",
-            query = "SELECT u FROM User AS u ORDER BY u.id DESC"
+            query = "SELECT u FROM User AS u ORDER BY u.user_id DESC"
             ),
     @NamedQuery(
             name = "getUsersCount",
             query = "SELECT COUNT(u) FROM User AS u"
             ),
     @NamedQuery(
-            name = "checkRegisteredUser_id",
-            query = "SELECT COUNT(u) FROM User AS u WHERE u.user_id = :user_id"
+            name = "checkRegisteredEmail",
+            query = "SELECT COUNT(u) FROM User AS u WHERE u.email = :email"
             ),
     @NamedQuery(
             name = "checkLoginCodeAndPassword",
-            query = "SELECT u FROM User AS u WHERE u.delete_flag = 0 AND u.user_id = :user_id AND u.password = :pass"
+            query = "SELECT u FROM User AS u WHERE u.delete_flag = 0 AND u.email = :email AND u.password = :pass"
             )
 })
 @Entity
 public class User {
     @Id
-    @Column(name = "id")
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer user_id;
 
-    @Column(name = "user_id", nullable = false)
-    private String user_id;
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    @Column(name = "user_name", nullable = false)
-    private String user_name;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "password", length = 64, nullable = false)
     private String password;
@@ -49,27 +49,27 @@ public class User {
 
 
     public Integer getId(){
-        return id;
-    }
-
-    public void setId(Integer id){
-        this.id = id;
-    }
-
-    public String getUser_id(){
         return user_id;
     }
 
-    public void setUser_id(String user_id){
+    public void setId(Integer user_id){
         this.user_id = user_id;
     }
 
-    public String getUser_name(){
-        return user_name;
+    public String getEmail(){
+        return email;
     }
 
-    public void setUser_name(String user_name){
-        this.user_name = user_name;
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public String getPassword(){

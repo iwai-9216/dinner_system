@@ -9,17 +9,17 @@ import models.User;
 import utils.DBUtil;
 
 public class UserValidator {
-    public static List<String> validate(User u, Boolean user_id_duplicate_check_flag, Boolean password_check_flag){
+    public static List<String> validate(User u, Boolean email_duplicate_check_flag, Boolean password_check_flag){
         List<String> errors = new ArrayList<String>();
 
-        String user_id_error = _validateUser_id(u.getUser_id(), user_id_duplicate_check_flag);
-        if(!user_id_error.equals("")){
-            errors.add(user_id_error);
+        String email_error = _validateEmail(u.getEmail(), email_duplicate_check_flag);
+        if(!email_error.equals("")){
+            errors.add(email_error);
         }
 
-        String user_name_error = _validateUser_name(u.getUser_name());
-        if(!user_name_error.equals("")){
-            errors.add(user_name_error);
+        String name_error = _validateName(u.getName());
+        if(!name_error.equals("")){
+            errors.add(name_error);
         }
 
         String password_error = _validatePassword(u.getPassword(), password_check_flag);
@@ -31,21 +31,21 @@ public class UserValidator {
     }
 
     //ユーザーID
-    private static String _validateUser_id(String user_id, Boolean user_id_duplicate_check_flag){
+    private static String _validateEmail(String email, Boolean email_duplicate_check_flag){
         //必須入力チェック
-        if(user_id == null || user_id.equals("")){
-            return "ユーザーIDを入力してください";
+        if(email == null || email.equals("")){
+            return "Eメールを入力してください";
         }
 
         //既に登録しているIDとの重複チェック
-        if(user_id_duplicate_check_flag){
+        if(email_duplicate_check_flag){
             EntityManager em = DBUtil.createEntityManager();
-            long users_count = (long)em.createNamedQuery("checkRegisteredUser_id", Long.class)
-                                        .setParameter("user_id", user_id)
+            long users_count = (long)em.createNamedQuery("checkRegisteredEmail", Long.class)
+                                        .setParameter("email", email)
                                             .getSingleResult();
             em.close();
             if(users_count > 0){
-                return "入力されたIDは既に存在しています";
+                return "入力されたアドレスは既に存在しています";
             }
         }
 
@@ -53,8 +53,8 @@ public class UserValidator {
     }
 
     //ユーザー名の必須入力チェック
-    private static String _validateUser_name(String user_name){
-        if(user_name == null || user_name.equals("")){
+    private static String _validateName(String name){
+        if(name == null || name.equals("")){
             return "ユーザー名を入力してください";
         }
         return "";

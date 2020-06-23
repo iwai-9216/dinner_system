@@ -9,16 +9,16 @@
 
     </div>
 </c:if>
-<label for="user_id">ユーザーID</label><br />
-<input type="text" name="user_name" value="${user.user_id}" />
+<label for="email">Eメール</label><br />
+<input type="text" name="email" value="${user.email}" />
 <br /><br />
 
-<label for="user_name">ユーザー名</label><br />
-<input type="text" name="user_name" value="${user.user_name}" />
+<label for="name">ユーザー名</label><br />
+<input type="text" name="name" value="${user.name}" />
 <br /><br />
 
 <label for="password">パスワード</label><br />
-<input type="text" name="password" />
+<input type="password" name="password" />
 <br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />
