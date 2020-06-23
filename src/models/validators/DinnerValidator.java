@@ -1,16 +1,17 @@
 package models.validators;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import models.Dinner;
 
 public class DinnerValidator {
     public static List<String> validate(Dinner d){
-        List<String> errors = newArrayList<String>();
+        List<String> errors = new ArrayList<String>();
 
-        String Dinnser_error = _validateDinnser(d.getDinner());
-        if(!dinner_error.equals("")){
-            errors.add(Dinnser_error);
+        String Dinner_error = _validateDinner(d.getDinner());
+        if(!Dinner_error.equals("")){
+            errors.add(Dinner_error);
         }
 
         return errors;
