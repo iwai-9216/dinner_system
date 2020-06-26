@@ -148,7 +148,17 @@ table#dinner_list th {
 }
 
 table#dinner_list .dinner_name {
-    width: 20%;
+    width: 30%;
+    padding: 10px 2%;
+}
+
+table#dinner_list .dinner_dinner {
+    width: 30%;
+    padding: 10px 2%;
+}
+
+table#dinner_list .dinner_action {
+    width: 30%;
     padding: 10px 2%;
 }
 

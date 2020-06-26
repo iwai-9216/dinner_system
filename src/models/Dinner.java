@@ -15,10 +15,10 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllDinners",
-            query = "SELECT D FROM Dinner AS d ORDER BY d.dinner_id DESC"
+            query = "SELECT d FROM Dinner AS d ORDER BY d.dinner_id DESC"
             ),
     @NamedQuery(
-            name = "getAllDinnersCount",
+            name = "getDinnersCount",
             query = "SELECT COUNT(d) FROM Dinner AS d"
             ),
 })
