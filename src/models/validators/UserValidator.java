@@ -17,9 +17,9 @@ public class UserValidator {
             errors.add(email_error);
         }
 
-        String name_error = _validateName(u.getName());
-        if(!name_error.equals("")){
-            errors.add(name_error);
+        String user_error = _validateName(u.getUser());
+        if(!user_error.equals("")){
+            errors.add(user_error);
         }
 
         String password_error = _validatePassword(u.getPassword(), password_check_flag);
@@ -53,8 +53,8 @@ public class UserValidator {
     }
 
     //ユーザー名の必須入力チェック
-    private static String _validateName(String name){
-        if(name == null || name.equals("")){
+    private static String _validateName(String user){
+        if(user == null || user.equals("")){
             return "ユーザー名を入力してください";
         }
         return "";

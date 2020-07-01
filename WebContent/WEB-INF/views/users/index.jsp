@@ -17,14 +17,15 @@
                 <c:forEach var="user" items="${users}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${user.email}" /></td>
-                        <td><c:out value="${user.name}" /></td>
+                        <td><c:out value="${user.user}" /></td>
                         <td>
                             <c:choose>
                                 <c:when test="${user.delete_flag == 1}">
                                     （削除済み）
                                 </c:when>
-                                    <a href="<c:url value='/users/show?id=${user.id}' />">詳細を表示</a>
-
+                                <c:otherwise>
+                                    <a href="<c:url value='/users/show?id=${user.user_id}' />">詳細を表示</a>
+                                </c:otherwise>
                             </c:choose>
                         </td>
                     </tr>

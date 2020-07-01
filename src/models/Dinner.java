@@ -21,20 +21,29 @@ import javax.persistence.Table;
             name = "getDinnersCount",
             query = "SELECT COUNT(d) FROM Dinner AS d"
             ),
+    @NamedQuery(
+            name = "getMyAllDinners",
+            query = "SELECT d FROM Dinner AS d WHERE d.user = :user ORDER BY d.dinner_id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyDinnersCount",
+            query = "SELECT COUNT(d) FROM Dinner AS d WHERE d.user = :user"
+            )
 })
 @Entity
 public class Dinner {
+    @Column(name = "dinner", length = 225, nullable = false)
+    private String dinner;
+
     @Id
     @Column(name = "dinner_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer dinner_id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "email", nullable = false)
     private User user;
 
-    @Column(name = "dinner", length = 225, nullable = false)
-    private String dinner;
 
     public Integer getDinner_id(){
         return dinner_id;
@@ -44,19 +53,19 @@ public class Dinner {
         this.dinner_id = dinner_id;
     }
 
-    public User getUser(){
-        return user;
-    }
-
-    public void setUser(User user){
-        this.user = user;
-    }
-
     public String getDinner(){
         return dinner;
     }
 
     public void setDinner(String dinner){
         this.dinner = dinner;
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    public void setUser(User user){
+        this.user = user;
     }
 }

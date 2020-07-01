@@ -1,4 +1,4 @@
-package controllers.users;
+package controllers.dinners;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Dinner;
 import models.User;
-import models.validators.UserValidator;
+import models.validators.DinnerValidator;
 import utils.DBUtil;
-import utils.EncryptUtil;
 
-@WebServlet("/users/create")
-public class UsersCreateServlet extends HttpServlet {
+@WebServlet("/dinners/create")
+public class DinnersCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public UsersCreateServlet() {
+    public DinnersCreateServlet() {
         super();
     }
 
@@ -29,36 +29,31 @@ public class UsersCreateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())){
             EntityManager em = DBUtil.createEntityManager();
 
-            User u = new User();
+            Dinner d = new Dinner();
 
-            u.setEmail(request.getParameter("email"));
-            u.setUser(request.getParameter("user"));
-            u.setPassword(
-                    EncryptUtil.getPasswordEncrypt(
-                        request.getParameter("password"),
-                        (String)this.getServletContext().getAttribute("salt")
-                        )
-                    );
-            u.setDelete_flag(0);
+            d.setDinner(request.getParameter("dinner"));
 
-            List<String> errors = UserValidator.validate(u, true, true);
-            if(errors.size() > 0){
+            d.setUser((User)request.getSession().getAttribute("user"));
+
+
+            List<String> errors = DinnerValidator.validate(d);
+            if(errors.size() > 0) {
                 em.close();
 
                 request.setAttribute("_token", request.getSession().getId());
-                request.setAttribute("user", u);
+                request.setAttribute("dinner", d);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/new.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/dinners/new.jsp");
                 rd.forward(request, response);
-            }else{
+            } else {
                 em.getTransaction().begin();
-                em.persist(u);
+                em.persist(d);
                 em.getTransaction().commit();
                 em.close();
-                request.getSession().setAttribute("flush", "登録が完了しました");
+                request.getSession().setAttribute("flush", "登録が完了しました。");
 
-                response.sendRedirect(request.getContextPath() + "/users/index" );
+                response.sendRedirect(request.getContextPath() + "/dinners/index");
             }
         }
     }

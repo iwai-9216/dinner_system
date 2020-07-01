@@ -14,7 +14,7 @@
 <br /><br />
 
 <label for="name">ユーザー名</label><br />
-<input type="text" name="name" value="${user.name}" />
+<input type="text" name="user" value="${user.user}" />
 <br /><br />
 
 <label for="password">パスワード</label><br />

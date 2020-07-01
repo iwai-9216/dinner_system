@@ -14,8 +14,8 @@
 <input type="text" name="dinner" value="${dinner.dinner}" />
 <br /><br />
 
-<label for="username">ユーザー名</label><br />
-<c:out value="${sessionScope.login_user.username}" />
+<label for="user">ユーザー名</label><br />
+<c:out value="${sessionScope.login_user.user}" />
 <br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />

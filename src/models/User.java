@@ -38,8 +38,8 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "user", nullable = false)
+    private String user;
 
     @Column(name = "password", length = 64, nullable = false)
     private String password;
@@ -48,7 +48,7 @@ public class User {
     private Integer delete_flag;
 
 
-    public Integer getId(){
+    public Integer getUser_id(){
         return user_id;
     }
 
@@ -64,12 +64,12 @@ public class User {
         this.email = email;
     }
 
-    public String getName(){
-        return name;
+    public String getUser(){
+        return user;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setUser(String user){
+        this.user = user;
     }
 
     public String getPassword(){
