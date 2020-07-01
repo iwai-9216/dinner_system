@@ -29,7 +29,7 @@ public class DinnersEditServlet extends HttpServlet {
             em.close();
 
             User login_user = (User)request.getSession().getAttribute("login_user");
-            if(d != null && login_user.getUser_id() == d.getUser().getUser_id()) {
+            if(d != null && login_user.getId() == d.getUser().getId()) {
                 request.setAttribute("dinner", d);
                 request.setAttribute("_token", request.getSession().getId());
                 request.getSession().setAttribute("dinner_id", d.getDinner_id());

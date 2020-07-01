@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllUsers",
-            query = "SELECT u FROM User AS u ORDER BY u.user_id DESC"
+            query = "SELECT u FROM User AS u ORDER BY u.id DESC"
             ),
     @NamedQuery(
             name = "getUsersCount",
@@ -31,11 +31,11 @@ import javax.persistence.Table;
 @Entity
 public class User {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_id;
+    private Integer id;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     @Column(name = "name", nullable = false)
@@ -48,12 +48,12 @@ public class User {
     private Integer delete_flag;
 
 
-    public Integer getUser_id(){
-        return user_id;
+    public Integer getId(){
+        return id;
     }
 
-    public void setId(Integer user_id){
-        this.user_id = user_id;
+    public void setId(Integer id){
+        this.id = id;
     }
 
     public String getEmail(){

@@ -1,4 +1,4 @@
-/*
+ /*
 package filters;
 
 import java.io.IOException;
@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import models.Employee;
+import models.User;
 
 @WebFilter("/*")
-public class Loginfilter implements Filter {
+public class LoginFilter implements Filter {
 
-    public Loginfilter() {
+    public LoginFilter() {
     }
 
     public void destroy() {
@@ -33,25 +33,31 @@ public class Loginfilter implements Filter {
             HttpSession session = ((HttpServletRequest)request).getSession();
 
             //セッションスコープに保存された従業員（ログインユーザー）情報を取得
-            Employee e = (Employee)session.getAttribute("login_employee");
+            User u = (User)session.getAttribute("login_user");
 
             if(!servlet_path.equals("/login")){
                 //ログアウトしている状態であれば
                 //ログイン画面にリダイレクト
-                if(e == null){
+                if(u == null){
                     ((HttpServletResponse)response).sendRedirect(context_path + "/login");
                     return;
                 }
 
                 //従業員管理の機能は管理者のみが閲覧できるようにする
-                if(servlet_path.matches("/employees.*") && e.getAdmin_flag() == 0){
+// /*                if(servlet_path.matches("/users.*") && u.getAdmin_flag() == 0){
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
                 }
-            }else{         //ログイン画面について
+//
+                if(servlet_path.matches("/users.*") && u.getEmail() == iwai9216@gmail.com){
+                    ((HttpServletResponse)response).sendRedirect(context_path + "/");
+                    return;
+                }
+
+            }else{     //ログイン画面について
                 //ログインしているのにログイン画面を表示させようとした場合は
                 //システムのトップページにリダイレクト
-                if(e != null){
+                if(u != null){
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
                 }
@@ -65,4 +71,4 @@ public class Loginfilter implements Filter {
 
     }
 }
-*/
+ */
