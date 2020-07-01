@@ -20,7 +20,7 @@
                 </div>
                 <c:if test="${sessionScope.login_user != null}">
                     <div id="user_name">
-                        <c:out value="${sessionScope.login_user.user}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
+                        <c:out value="${sessionScope.login_user.name}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/logout' />">ログアウト</a>
                     </div>
                 </c:if>

@@ -15,7 +15,7 @@
 <br /><br />
 
 <label for="user">ユーザー名</label><br />
-<c:out value="${sessionScope.login_user.user}" />
+<c:out value="${sessionScope.login_user.name}" />
 <br /><br />
 
 <input type="hidden" name="_token" value="${_token}" />

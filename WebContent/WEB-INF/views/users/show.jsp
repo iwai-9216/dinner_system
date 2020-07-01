@@ -11,7 +11,7 @@
                     <tbody>
                         <tr>
                             <th>ユーザー名</th>
-                            <td><c:out value="${user.user}" /></td>
+                            <td><c:out value="${user.name}" /></td>
                         </tr>
                         <tr>
                             <th>Eメール</th>

@@ -13,13 +13,13 @@
             <tbody>
                 <tr>
                     <th class="dinner_dinner">料理名</th>
-                    <th class="dinner_user">ユーザー名</th>
+                    <th class="dinner_name">ユーザー名</th>
                     <th class="dinner_action">編集</th>
                 </tr>
                 <c:forEach var="dinner" items="${dinners}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td class="dinner_dinner">${dinner.dinner}</td>
-                        <td class="dinner_user"><c:out value="${dinner.user.user}" /></td>
+                        <td class="dinner_name"><c:out value="${dinner.user.name}" /></td>
                         <td class="dinner_action"><a href="<c:url value='/dinners/show?id=${dinner.dinner_id}' />">編集する</a></td>
                     </tr>
                 </c:forEach>

@@ -17,7 +17,7 @@
                         </tr>
                         <tr>
                             <th>氏名</th>
-                            <td><c:out value="${Dinner.user.user}" /></td>
+                            <td><c:out value="${Dinner.user.name}" /></td>
                         </tr>
                     </tbody>
                 </table>

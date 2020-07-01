@@ -38,8 +38,8 @@ public class User {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "user", nullable = false)
-    private String user;
+    @Column(name = "name", nullable = false)
+    private String name;
 
     @Column(name = "password", length = 64, nullable = false)
     private String password;
@@ -64,12 +64,12 @@ public class User {
         this.email = email;
     }
 
-    public String getUser(){
-        return user;
+    public String getName(){
+        return name;
     }
 
-    public void setUser(String user){
-        this.user = user;
+    public void setName(String name){
+        this.name = name;
     }
 
     public String getPassword(){

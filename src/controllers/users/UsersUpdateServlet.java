@@ -55,7 +55,7 @@ public class UsersUpdateServlet extends HttpServlet {
                         );
             }
 
-            u.setUser(request.getParameter("user"));
+            u.setName(request.getParameter("name"));
             u.setDelete_flag(0);
 
             List<String> errors = UserValidator.validate(u, email_duplicate_check, password_check_flag);
