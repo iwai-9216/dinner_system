@@ -5,7 +5,7 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${user != null}">
-                <h2>id : ${user.user_id} のユーザー情報詳細ページ</h2>
+                <h2>id : ${user.id} のユーザー情報詳細ページ</h2>
 
                 <table>
                     <tbody>
@@ -17,11 +17,19 @@
                             <th>Eメール</th>
                             <td><c:out value="${user.email}" /></td>
                         </tr>
-
+                        <tr>
+                            <th>権限</th>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${user.admin_flag == 1}">管理者</c:when>
+                                    <c:otherwise>一般</c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
-                <p><a href="<c:url value='/users/edit?id=${user.user_id}' />">このユーザー情報を編集する</a></p>
+                <p><a href="<c:url value='/users/edit?id=${user.id}' />">このユーザー情報を編集する</a></p>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>

@@ -10,8 +10,8 @@
 
     </div>
 </c:if>
-<label for="dinner_dinner">料理名</label><br />
-<input type="text" name="dinner" value="${dinner.dinner}" />
+<label for="dish">料理名</label><br />
+<input type="text" name="dish" value="${dinner.dish}" />
 <br /><br />
 
 <label for="user">ユーザー名</label><br />

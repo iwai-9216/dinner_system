@@ -29,7 +29,7 @@ public class UsersUpdateServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("email")));
+            User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
 
             // 現在の値と異なる社員番号が入力されていたら
             // 重複チェックを行う指定をする
@@ -56,6 +56,7 @@ public class UsersUpdateServlet extends HttpServlet {
             }
 
             u.setName(request.getParameter("name"));
+            u.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
             u.setDelete_flag(0);
 
             List<String> errors = UserValidator.validate(u, email_duplicate_check, password_check_flag);
@@ -74,7 +75,7 @@ public class UsersUpdateServlet extends HttpServlet {
                 em.close();
                 request.getSession().setAttribute("flush", "更新が完了しました。");
 
-                request.getSession().removeAttribute("email");
+                request.getSession().removeAttribute("user_id");
 
                 response.sendRedirect(request.getContextPath() + "/users/index");
             }

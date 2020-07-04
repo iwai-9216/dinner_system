@@ -31,6 +31,7 @@ public class DinnersIndexServlet extends HttpServlet {
         }catch(Exception e){
             page = 1;
         }
+
         List<Dinner> dinners = em.createNamedQuery("getAllDinners", Dinner.class)
                                     .setFirstResult(12 * (page - 1))
                                     .setMaxResults(12)

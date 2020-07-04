@@ -25,7 +25,7 @@ public class UsersDestroyServlet extends HttpServlet {
         if(_token != null && _token.equals(request.getSession().getId())) {
             EntityManager em = DBUtil.createEntityManager();
 
-            User u = em.find(User.class, (request.getSession().getAttribute("email")));
+            User u = em.find(User.class, (request.getSession().getAttribute("user_id")));
             u.setDelete_flag(1);
 
             em.getTransaction().begin();

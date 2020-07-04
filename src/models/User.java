@@ -47,6 +47,8 @@ public class User {
     @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
 
+    @Column(name ="admin_flag", nullable = true)
+    private Integer admin_flag;
 
     public Integer getId(){
         return id;
@@ -87,4 +89,13 @@ public class User {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
+
+    public Integer getAdmin_flag() {
+        return admin_flag;
+    }
+
+    public void setAdmin_flag(Integer admin_flag) {
+        this.admin_flag = admin_flag;
+    }
+
 }

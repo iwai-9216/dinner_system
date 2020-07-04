@@ -4,7 +4,7 @@
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
         <c:choose>
-            <c:when test="${report != null}">
+            <c:when test="${dinner != null}">
                 <h2>料理 詳細ページ</h2>
 
                 <table>
@@ -12,18 +12,18 @@
                         <tr>
                             <th>料理名</th>
                             <td>
-                                <pre><c:out value="${dinner.dinner}" /></pre>
+                                <pre><c:out value="${dinner.dish}" /></pre>
                             </td>
                         </tr>
                         <tr>
                             <th>氏名</th>
-                            <td><c:out value="${Dinner.user.name}" /></td>
+                            <td><c:out value="${dinner.user.name}" /></td>
                         </tr>
                     </tbody>
                 </table>
 
-                <c:if test="${sessionScope.login_user.id == dinner.user.user_id}">
-                    <p><a href="<c:url value="/dinners/edit?id=${dinner.dinner_id}" />">この料理を編集する</a></p>
+                <c:if test="${sessionScope.login_user.id == dinner.user.id}">
+                    <p><a href="<c:url value="/dinners/edit?id=${dinner.id}" />">この料理を編集する</a></p>
                 </c:if>
             </c:when>
             <c:otherwise>

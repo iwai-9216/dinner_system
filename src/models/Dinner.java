@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getAllDinners",
-            query = "SELECT d FROM Dinner AS d ORDER BY d.dinner_id DESC"
+            query = "SELECT d FROM Dinner AS d ORDER BY d.id DESC"
             ),
     @NamedQuery(
             name = "getDinnersCount",
@@ -23,7 +23,7 @@ import javax.persistence.Table;
             ),
     @NamedQuery(
             name = "getMyAllDinners",
-            query = "SELECT d FROM Dinner AS d WHERE d.user = :user ORDER BY d.dinner_id DESC"
+            query = "SELECT d FROM Dinner AS d WHERE d.user = :user ORDER BY d.id DESC"
             ),
     @NamedQuery(
             name = "getMyDinnersCount",
@@ -32,33 +32,25 @@ import javax.persistence.Table;
 })
 @Entity
 public class Dinner {
-    @Column(name = "dinner", length = 225, nullable = false)
-    private String dinner;
-
     @Id
-    @Column(name = "dinner_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer dinner_id;
+    private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "email", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name = "dish", length = 225, nullable = false)
+    private String dish;
 
-    public Integer getDinner_id(){
-        return dinner_id;
+
+    public Integer getId(){
+        return id;
     }
 
-    public void setDinner_id(Integer dinner_id){
-        this.dinner_id = dinner_id;
-    }
-
-    public String getDinner(){
-        return dinner;
-    }
-
-    public void setDinner(String dinner){
-        this.dinner = dinner;
+    public void setId(Integer id){
+        this.id = id;
     }
 
     public User getUser(){
@@ -67,5 +59,13 @@ public class Dinner {
 
     public void setUser(User user){
         this.user = user;
+    }
+
+    public String getDish(){
+        return dish;
+    }
+
+    public void setDish(String dish){
+        this.dish = dish;
     }
 }

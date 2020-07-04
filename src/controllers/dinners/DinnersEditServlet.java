@@ -21,21 +21,22 @@ public class DinnersEditServlet extends HttpServlet {
     public DinnersEditServlet() {
         super();
     }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            EntityManager em = DBUtil.createEntityManager();
+        EntityManager em = DBUtil.createEntityManager();
 
-            Dinner d = em.find(Dinner.class, Integer.parseInt(request.getParameter("dinner_id")));
+        Dinner d = em.find(Dinner.class, Integer.parseInt(request.getParameter("id")));
 
-            em.close();
+        em.close();
 
-            User login_user = (User)request.getSession().getAttribute("login_user");
-            if(d != null && login_user.getId() == d.getUser().getId()) {
-                request.setAttribute("dinner", d);
-                request.setAttribute("_token", request.getSession().getId());
-                request.getSession().setAttribute("dinner_id", d.getDinner_id());
-            }
+        User login_user = (User)request.getSession().getAttribute("login_user");
+        if(d != null && login_user.getId() == d.getUser().getId()) {
+            request.setAttribute("dinner", d);
+            request.setAttribute("_token", request.getSession().getId());
+            request.getSession().setAttribute("dinner_id", d.getId());
+        }
 
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/dinners/edit.jsp");
-            rd.forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/dinners/edit.jsp");
+        rd.forward(request, response);
     }
 }

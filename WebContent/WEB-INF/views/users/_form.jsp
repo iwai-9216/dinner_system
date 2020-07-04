@@ -21,5 +21,7 @@
 <input type="password" name="password" />
 <br /><br />
 
+<input type="hidden" name="admin_flag" value="0" />
+
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">登録</button>

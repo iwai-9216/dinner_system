@@ -24,7 +24,7 @@ public class DinnersShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        Dinner d = em.find(Dinner.class, Integer.parseInt(request.getParameter("dinner_id")));
+        Dinner d = em.find(Dinner.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
 

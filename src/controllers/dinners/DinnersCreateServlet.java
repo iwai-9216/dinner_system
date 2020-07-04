@@ -31,9 +31,9 @@ public class DinnersCreateServlet extends HttpServlet {
 
             Dinner d = new Dinner();
 
-            d.setDinner(request.getParameter("dinner"));
+            d.setDish(request.getParameter("dish"));
 
-            d.setUser((User)request.getSession().getAttribute("user"));
+            d.setUser((User)request.getSession().getAttribute("login_user"));
 
 
             List<String> errors = DinnerValidator.validate(d);

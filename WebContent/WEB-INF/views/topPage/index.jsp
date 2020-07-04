@@ -11,7 +11,7 @@
         <h2>Dinner systemへようこそ</h2>
         <h3>【今日の料理】</h3>
 
-        今日のおすすめ料理は"${value}"です！<br />
+        今日のおすすめ料理は『<c:out value="${value}" />』です！<br />
 
         <div id="pagination">
         </div>

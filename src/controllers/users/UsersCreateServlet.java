@@ -40,6 +40,9 @@ public class UsersCreateServlet extends HttpServlet {
                         )
                     );
             u.setDelete_flag(0);
+            u.setAdmin_flag(0);
+
+            u.setAdmin_flag(Integer.parseInt(request.getParameter("admin_flag")));
 
             List<String> errors = UserValidator.validate(u, true, true);
             if(errors.size() > 0){
