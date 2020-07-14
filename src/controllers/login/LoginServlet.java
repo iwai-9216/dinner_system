@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
                     (String)this.getServletContext().getAttribute("salt")
                     );
 
-            // 社員番号とパスワードが正しいかチェックする
+            // メールアドレスとパスワードが正しいかチェックする
             try {
                 u = em.createNamedQuery("checkLoginCodeAndPassword", User.class)
                       .setParameter("email", email)

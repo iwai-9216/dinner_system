@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,14 +23,11 @@ import javax.persistence.Table;
             query = "SELECT COUNT(d) FROM Dinner AS d"
             ),
     @NamedQuery(
-            name = "getMyAllDinners",
-            query = "SELECT d FROM Dinner AS d WHERE d.user = :user ORDER BY d.id DESC"
+            name = "getAllDinnersUrl",
+            query = "SELECT d FROM Dinner AS d WHERE d.url IS NOT NULL"
             ),
-    @NamedQuery(
-            name = "getMyDinnersCount",
-            query = "SELECT COUNT(d) FROM Dinner AS d WHERE d.user = :user"
-            )
 })
+
 @Entity
 public class Dinner {
     @Id
@@ -43,6 +41,10 @@ public class Dinner {
 
     @Column(name = "dish", length = 225, nullable = false)
     private String dish;
+
+    @Lob
+    @Column(name = "url", length = 225, nullable = true)
+    private String url;
 
 
     public Integer getId(){
@@ -67,5 +69,13 @@ public class Dinner {
 
     public void setDish(String dish){
         this.dish = dish;
+    }
+
+    public String getUrl(){
+        return url;
+    }
+
+    public void setUrl(String url){
+        this.url = url;
     }
 }

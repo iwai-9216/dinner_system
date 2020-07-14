@@ -18,5 +18,9 @@
 <c:out value="${sessionScope.login_user.name}" />
 <br /><br />
 
+<label for="url">クックパッド URL</label><br />
+<input type="text" name="url" value="${dinner.url}" />
+<br /><br />
+
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">登録</button>

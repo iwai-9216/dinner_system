@@ -16,6 +16,15 @@
                             </td>
                         </tr>
                         <tr>
+                            <th>リンク</th>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${empty dinner.url}" >まだ登録されていません</c:when>
+                                    <c:otherwise><pre><a href="<c:out value="${dinner.url}" />">クックパッドで<c:out value="${dinner.dish}" />のレシピを見る</a></pre></c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>氏名</th>
                             <td><c:out value="${dinner.user.name}" /></td>
                         </tr>

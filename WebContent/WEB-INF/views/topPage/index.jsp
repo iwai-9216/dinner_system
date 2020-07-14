@@ -11,10 +11,14 @@
         <h2>Dinner systemへようこそ</h2>
         <h3>【今日の料理】</h3>
 
-        今日のおすすめ料理は『<c:out value="${value}" />』です！<br />
+        <c:choose>
+            <c:when test="${dishId == null}">今日のおすすめ料理は『<a href="https://cookpad.com/search/カレー">カレー</a>』です！<br /></c:when>
+            <c:otherwise>今日のおすすめ料理は『<a href="<c:url value='/dinners/show?id=${dishId}' />"><c:out value="${dishName}" /></a>』です！<br /></c:otherwise>
+        </c:choose>
 
         <div id="pagination">
         </div>
         <p><a href="<c:url value='/dinners/new' />">料理の登録</a></p>
+
     </c:param>
 </c:import>

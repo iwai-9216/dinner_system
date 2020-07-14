@@ -31,7 +31,7 @@ public class UsersUpdateServlet extends HttpServlet {
 
             User u = em.find(User.class, (Integer)(request.getSession().getAttribute("user_id")));
 
-            // 現在の値と異なる社員番号が入力されていたら
+            // 現在の値と異なるメールアドレスが入力されていたら
             // 重複チェックを行う指定をする
             Boolean email_duplicate_check = true;
             if(u.getEmail().equals(request.getParameter("email"))) {

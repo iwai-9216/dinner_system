@@ -32,6 +32,7 @@ public class DinnersCreateServlet extends HttpServlet {
             Dinner d = new Dinner();
 
             d.setDish(request.getParameter("dish"));
+            d.setUrl(request.getParameter("url"));
 
             d.setUser((User)request.getSession().getAttribute("login_user"));
 

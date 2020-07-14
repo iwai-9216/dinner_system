@@ -14,13 +14,21 @@
                 <tr>
                     <th class="dinner_dish">料理名</th>
                     <th class="dinner_name">ユーザー名</th>
-                    <th class="dinner_action">編集</th>
+                    <th class="dinner_url">URL</th>
+                    <th class="dinner_action">操作</th>
                 </tr>
                 <c:forEach var="dinner" items="${dinners}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td class="dinner_dish">${dinner.dish}</td>
                         <td class="dinner_name"><c:out value="${dinner.user.name}" /></td>
+                        <td class="dinner_url">
+                            <c:choose>
+                                <c:when test="${empty dinner.url}" >なし</c:when>
+                                <c:otherwise><a href="<c:out value="${dinner.url}" />">あり</a></c:otherwise>
+                            </c:choose>
+                        </td>
                         <td class="dinner_action"><a href="<c:url value='/dinners/show?id=${dinner.id}' />">詳細を見る</a></td>
+
                     </tr>
                 </c:forEach>
             </tbody>

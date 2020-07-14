@@ -24,6 +24,8 @@
 
             <input type="hidden" name="_token" value="${_token}" />
             <button type="submit">ログイン</button>
+
+            <p>新規の方は<a href="<c:url value='/users/new' />">こちら</a>から</p>
         </form>
     </c:param>
 </c:import>

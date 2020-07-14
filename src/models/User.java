@@ -97,5 +97,4 @@ public class User {
     public void setAdmin_flag(Integer admin_flag) {
         this.admin_flag = admin_flag;
     }
-
 }

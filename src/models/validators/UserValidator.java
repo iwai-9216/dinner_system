@@ -41,7 +41,7 @@ public class UserValidator {
         if(email_duplicate_check_flag){
             EntityManager em = DBUtil.createEntityManager();
             long users_count = (long)em.createNamedQuery("checkRegisteredEmail", Long.class)
-                                        .setParameter("email", email)
+                                            .setParameter("email", email)
                                             .getSingleResult();
             em.close();
             if(users_count > 0){

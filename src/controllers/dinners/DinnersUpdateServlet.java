@@ -31,6 +31,7 @@ public class DinnersUpdateServlet extends HttpServlet {
             Dinner d = em.find(Dinner.class, (Integer)(request.getSession().getAttribute("dinner_id")));
 
             d.setDish(request.getParameter("dish"));
+            d.setUrl(request.getParameter("url"));
 
             List<String> errors = DinnerValidator.validate(d);
             if(errors.size() > 0) {

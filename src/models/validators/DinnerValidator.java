@@ -14,6 +14,11 @@ public class DinnerValidator {
             errors.add(dish_error);
         }
 
+        String url_error = _validateUrl(d.getUrl());
+        if(!url_error.equals("")){
+            errors.add(url_error);
+        }
+
         return errors;
     }
 
@@ -21,7 +26,13 @@ public class DinnerValidator {
         if(dish == null || dish.equals("")){
             return "料理名を入力してください";
         }
+        return "";
+    }
 
+    private static String _validateUrl(String url){
+       if(!(url == null || url.equals("") || url.contains("https://cookpad.com/recipe/"))){
+            return "クックパッドのURLを入力してください";
+        }
         return "";
     }
 }

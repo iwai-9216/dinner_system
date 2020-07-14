@@ -1,4 +1,3 @@
-// /*
 package filters;
 
 import java.io.IOException;
@@ -30,9 +29,12 @@ public class LoginFilter implements Filter {
         String servlet_path = ((HttpServletRequest)request).getServletPath();
 
         if(!servlet_path.matches("/css.*")){
-            HttpSession session = ((HttpServletRequest)request).getSession();
+        if(!servlet_path.matches("/users/new")){
+        if(!servlet_path.matches("/users/create")){
 
-            //セッションスコープに保存された従業員（ログインユーザー）情報を取得
+        HttpSession session = ((HttpServletRequest)request).getSession();
+
+            //セッションスコープに保存されたユーザー情報を取得
             User u = (User)session.getAttribute("login_user");
 
             if(!servlet_path.equals("/login")){
@@ -43,11 +45,12 @@ public class LoginFilter implements Filter {
                     return;
                 }
 
-                //従業員管理の機能は管理者のみが閲覧できるようにする
+                //ユーザー管理の機能は管理者のみが閲覧できるようにする
                 if(servlet_path.matches("/users.*") && u.getAdmin_flag() == 0){
                     ((HttpServletResponse)response).sendRedirect(context_path + "/");
                     return;
                 }
+
             }else{     //ログイン画面について
                 //ログインしているのにログイン画面を表示させようとした場合は
                 //システムのトップページにリダイレクト
@@ -56,8 +59,7 @@ public class LoginFilter implements Filter {
                     return;
                 }
             }
-        }
-
+        }}}
         chain.doFilter(request, response);
     }
 
@@ -65,5 +67,3 @@ public class LoginFilter implements Filter {
 
     }
 }
-
-// */

@@ -25,18 +25,21 @@ public class TopPageIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        List<Dinner> all_dish = em.createNamedQuery("getAllDinners", Dinner.class)
-                .setFirstResult(0)
-                .setMaxResults(100)
-                .getResultList();
 
-        if(all_dish.size() == 0){
-            Dinner value = null;
-            request.setAttribute("value", value);
+        List<Dinner> all_dish_url = em.createNamedQuery("getAllDinnersUrl", Dinner.class)
+                                        .setFirstResult(0)
+                                        .setMaxResults(100)
+                                        .getResultList();
+
+        if(all_dish_url.size() == 0){
+            Dinner dishId = null;
+            request.setAttribute("dishId", dishId);
         }else{
-            Dinner value = all_dish.get((int)(Math.random() * all_dish.size()));
-            request.setAttribute("value", value.getDish());
+            Dinner dishId = all_dish_url.get((int)(Math.random() * all_dish_url.size()));
+            request.setAttribute("dishId", dishId.getId());
+            request.setAttribute("dishName", dishId.getDish());
         }
+
 
         em.close();
 
